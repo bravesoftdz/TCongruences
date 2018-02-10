@@ -28,20 +28,30 @@ begin
 end;
 ```
 
-The class offers other useful functions and the most interesting one is `solveSystem` which takes an array of congruences and returns an integer. It is of course very easy and fast to use, here we have a working example of the function:
+The class offers other useful functions and the most interesting one is `SolveSystem` which takes an array of congruences and returns an integer. It is of course very easy and fast to use, here we have a working example of the function:
 
-``` pascal
+``` Delphi
 procedure TForm1.Button1Click(Sender: TObject);
-var sol: integer;
+var c1, c2: TCongruence;
+    sol: integer;
 begin
- 
- (* This code solves the following system:
-    1x ≡ 2 (mod 4)
-    1x ≡ 3 (mod 7) *)
- 
- sol := TCongruence.solveSystem( [ TCongruence.Create(Application, 1, 2, 4),
-                                   TCongruence.Create(Application, 1, 3, 7),
-                                   TCongruence.Create(Application, 1, 0, 9) ] , true);
+
+ c1 := TCongruence.Create(1,2,4);
+ try
+
+   c2 := TCongruence.Create(1,3,7);
+   try
+
+     sol := TCongruence.SolveSystem([c1, c2], true);
+     ShowMessage('System solution: ' + sol.ToString);
+
+   finally
+     c2.Free;
+   end;
+
+ finally
+   c1.Free;
+ end;
 
 end;
 ```
