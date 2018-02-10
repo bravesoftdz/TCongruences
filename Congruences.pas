@@ -26,7 +26,7 @@ type
   public
    constructor Create(a, b, n: integer);
    function getSolution: TCongrSolutions;
-   class function solveSystem(const a: array of TCongruence; setClass: boolean): integer;
+   class function SolveSystem(const a: array of TCongruence; setClass: boolean): integer;
    class function modinv(u, v: integer): integer;
    class function getGCD(u, v: integer): integer;
    property getClass: integer read numClass;
@@ -128,7 +128,7 @@ begin
   Result := ((a mod b) + b) mod b;
 end;
 
-class function TCongruence.solveSystem(const a: array of TCongruence; setClass: boolean): integer;
+class function TCongruence.SolveSystem(const a: array of TCongruence; setClass: boolean): integer;
 var i, n, t: integer;
 begin
 
